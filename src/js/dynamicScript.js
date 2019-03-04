@@ -1,5 +1,4 @@
 import $ from "jquery";
-import { isArray } from "util";
 var dataInfoOrg;
 
 (function () {
@@ -43,8 +42,10 @@ var dataInfoOrg;
     </li>`));
 
     for (var key in typeName) {
-      console.log(dataInfoOrg[key].length);
-      if (dataInfoOrg[key].length ||!isArray(dataInfoOrg[key])) {
+      console.log(dataInfoOrg[key]);
+      console.log(key);
+
+      if (dataInfoOrg[key]) {
         var $newItem = $navItem.clone();
         var word = typeName[key].charAt(0).toUpperCase() + typeName[key].slice(1);
         $newItem.find('.js-nav-link').attr('data-place', key).text(word).attr('href', `#${key}`);
@@ -79,26 +80,37 @@ export function funcDynamic() {
   switch (hash) {
     case 'main':
       $dynamicDiv.load('main.html .main', function () {
-        $('.header .header-org').text(dataInfoOrg.organization.nameOrganization);
-        $('.header .header-doc').text(dataInfoOrg.organization.numberDocumentation);
-        $('.header .header-status').text(dataInfoOrg.organization.statusOrganization);
-        $('.main-people .block-director')
-          .find('.surname')
-          .text(dataInfoOrg.director.surname).end()
-          .find('.name')
-          .text(dataInfoOrg.director.name).end()
-          .find('.patronymic')
-          .text(dataInfoOrg.director.surname);
 
-        $('.main-people .block-responsible')
-          .find('.surname')
-          .text(dataInfoOrg.responsible.surname).end()
-          .find('.name')
-          .text(dataInfoOrg.responsible.name).end()
-          .find('.patronymic')
-          .text(dataInfoOrg.responsible.surname).end()
-          .find('.telephone')
-          .text(dataInfoOrg.responsible.telephone);
+        dataInfoOrg.organization.forEach(function (block) {
+          $('.header .header-org').text(block.nameOrganization);
+          $('.header .header-doc').text(block.numberDocumentation);
+          $('.header .header-status').text(block.statusOrganization);
+        });
+
+
+        dataInfoOrg.director.forEach(function (director) {
+          $('.main-people .block-director')
+            .find('.surname')
+            .text(director.surname).end()
+            .find('.name')
+            .text(director.name).end()
+            .find('.patronymic')
+            .text(director.surname);
+        });
+
+        dataInfoOrg.responsible.forEach(function (responsible) {
+          $('.main-people .block-responsible')
+            .find('.surname')
+            .text(responsible.surname).end()
+            .find('.name')
+            .text(responsible.name).end()
+            .find('.patronymic')
+            .text(responsible.surname).end()
+            .find('.telephone')
+            .text(responsible.telephone);
+        });
+
+
       });
 
       break;
@@ -144,15 +156,19 @@ export function funcDynamic() {
 
     case 'additionalInfo':
       $dynamicDiv.load('additionalInfo.html .additionalInfo', function () {
-        var $additionalInfoBlock = $('.block-additionalInfo');
-        var $description = $('.description').detach();
+        var $additionalInfoBlock = $('.block-additionalInfos');
+        var $additionalInfoStruc = $('.block-additionalInfo').detach();
 
-        // var $newInfo = $($description).clone();
+        
+        dataInfoOrg.additionalInfo.forEach(function (block) {
+          var $newInfo = $($additionalInfoStruc).clone();
 
-        $description.text(dataInfoOrg.additionalInfo.description);
+          $newInfo
+            .find('.description').text(block.description);
 
-        $additionalInfoBlock.append($description);
-        $additionalInfoBlock.append("</br>");
+          $additionalInfoBlock.append($newInfo);
+          $additionalInfoBlock.append("</br>");
+        });
 
       });
       break;
@@ -196,14 +212,19 @@ export function funcDynamic() {
 
     case 'others':
       $dynamicDiv.load('others.html .others', function () {
-        var $othersBlock = $('.block-others');
-        var $description = $('.description').detach();
+        var $otherBlock = $('.block-others');
+        var $otherStruc = $('.block-other').detach();
 
-        // var $newInfo = $($description).clone();
-        $description.text(dataInfoOrg.others.description);
+        
+        dataInfoOrg.others.forEach(function (block) {
+          var $newInfo = $($otherStruc).clone();
 
-        $othersBlock.append($description);
-        $othersBlock.append("</br>");
+          $newInfo
+            .find('.description').text(block.description);
+
+          $otherBlock.append($newInfo);
+          $otherBlock.append("</br>");
+        });
 
       });
       break;
@@ -226,7 +247,7 @@ export function funcDynamic() {
       });
       break;
 
-      case 'societies':
+    case 'societies':
       $dynamicDiv.load('societies.html .societies', function () {
         var $societiesBlock = $('.block-societies');
         var societyStruc = $('.block-society').detach();
@@ -245,7 +266,7 @@ export function funcDynamic() {
         });
       });
       break;
-      case 'collectives':
+    case 'collectives':
       $dynamicDiv.load('collectives.html .collectives', function () {
         var $collectivesBlock = $('.block-collectives');
         var collectiveStruc = $('.block-collective').detach();
@@ -265,7 +286,7 @@ export function funcDynamic() {
       });
       break;
 
-      case 'events':
+    case 'events':
       $dynamicDiv.load('events.html .events', function () {
         var $eventsBlock = $('.block-events');
         var eventStruc = $('.block-event').detach();
