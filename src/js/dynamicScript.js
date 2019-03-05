@@ -13,7 +13,6 @@ var dataInfoOrg;
       async: false,
       success: function (result) {
         res = JSON.parse(result);
-        console.log(res);
       }
     });
     return res;
@@ -42,8 +41,6 @@ var dataInfoOrg;
     </li>`));
 
     for (var key in typeName) {
-      console.log(dataInfoOrg[key]);
-      console.log(key);
 
       if (dataInfoOrg[key]) {
         var $newItem = $navItem.clone();
@@ -56,13 +53,12 @@ var dataInfoOrg;
 
   };
 
-  console.log('навигация скрипт');
 }());
 
 export function funcDynamic() {
   var hash = $(this).data('place') || window.location.hash.slice(1) || 'main';
   var $dynamicDiv = $('.dynamic-place');
-
+  var $htmlPage;
   $('.js-nav .active').removeClass('active');
   if (this === undefined) {
     $('.js-nav .nav-link').filter(function () {
@@ -79,234 +75,229 @@ export function funcDynamic() {
   });
   switch (hash) {
     case 'main':
-      $dynamicDiv.load('main.html .main', function () {
-
-        dataInfoOrg.organization.forEach(function (block) {
-          $('.header .header-org').text(block.nameOrganization);
-          $('.header .header-doc').text(block.numberDocumentation);
-          $('.header .header-status').text(block.statusOrganization);
-        });
-
-
-        dataInfoOrg.director.forEach(function (director) {
-          $('.main-people .block-director')
-            .find('.surname')
-            .text(director.surname).end()
-            .find('.name')
-            .text(director.name).end()
-            .find('.patronymic')
-            .text(director.surname);
-        });
-
-        dataInfoOrg.responsible.forEach(function (responsible) {
-          $('.main-people .block-responsible')
-            .find('.surname')
-            .text(responsible.surname).end()
-            .find('.name')
-            .text(responsible.name).end()
-            .find('.patronymic')
-            .text(responsible.surname).end()
-            .find('.telephone')
-            .text(responsible.telephone);
-        });
+      $htmlPage = $($('#main').html());
+      dataInfoOrg.organization.forEach(function (block) {
+        $htmlPage.find('.header .header-org').text(block.nameOrganization);
+        $htmlPage.find('.header .header-doc').text(block.numberDocumentation);
+        $htmlPage.find('.header .header-status').text(block.statusOrganization);
+      });
 
 
+      dataInfoOrg.director.forEach(function (director) {
+        $htmlPage.find('.main-people .block-director')
+          .find('.surname')
+          .text(director.surname).end()
+          .find('.name')
+          .text(director.name).end()
+          .find('.patronymic')
+          .text(director.surname);
+      });
+
+      dataInfoOrg.responsible.forEach(function (responsible) {
+        $htmlPage.find('.main-people .block-responsible')
+          .find('.surname')
+          .text(responsible.surname).end()
+          .find('.name')
+          .text(responsible.name).end()
+          .find('.patronymic')
+          .text(responsible.surname).end()
+          .find('.telephone')
+          .text(responsible.telephone);
       });
 
       break;
 
     case 'books':
-      $dynamicDiv.load('books.html .books', function () {
-        var $booksBlock = $('.block-books');
-        var bookStruc = $('.block-book').detach();
+      $htmlPage = $($('#books').html());
+      var $booksBlock = $htmlPage.find('.block-books');
+      var bookStruc = $booksBlock.find('.block-book').detach();
 
-        dataInfoOrg.books.forEach(function (book) {
-          var $newBook = $(bookStruc).clone();
+      dataInfoOrg.books.forEach(function (book) {
+        var $newBook = $(bookStruc).clone();
 
-          $newBook
-            .find('.name').text(book.name).end()
-            .find('.author').text(book.author).end()
-            .find('.publish').text(book.publish).end()
-            .find('.year').text(book.year).end();
-
-          $booksBlock.append($newBook);
-          $booksBlock.append("</br>");
-        });
+        $newBook
+          .find('.name').text(book.name).end()
+          .find('.author').text(book.author).end()
+          .find('.publish').text(book.publish).end()
+          .find('.year').text(book.year).end();
+        $booksBlock.append($newBook);
+        $booksBlock.append("</br>");
       });
+
       break;
     case 'teachers':
-      $dynamicDiv.load('teachers.html .teachers', function () {
-        var $teachersBlock = $('.block-teachers');
-        var $teacherStruc = $('.block-teacher').detach();
+      $htmlPage = $($('#teachers').html());
+      var $teachersBlock = $htmlPage.find('.block-teachers');
+      var $teacherStruc = $teachersBlock.find('.block-teacher').detach();
 
-        dataInfoOrg.teachers.forEach(function (teacher) {
-          var $newTeacher = $($teacherStruc).clone();
+      dataInfoOrg.teachers.forEach(function (teacher) {
+        var $newTeacher = $($teacherStruc).clone();
 
-          $newTeacher
-            .find('.name').text(teacher.name).end()
-            .find('.surname').text(teacher.surname).end()
-            .find('.patronymic').text(teacher.patronymic).end();
+        $newTeacher
+          .find('.name').text(teacher.name).end()
+          .find('.surname').text(teacher.surname).end()
+          .find('.patronymic').text(teacher.patronymic).end();
 
-          $teachersBlock.append($newTeacher);
-          $teachersBlock.append("</br>");
-        });
-
+        $teachersBlock.append($newTeacher);
+        $teachersBlock.append("</br>");
       });
+
       break;
 
     case 'additionalInfo':
-      $dynamicDiv.load('additionalInfo.html .additionalInfo', function () {
-        var $additionalInfoBlock = $('.block-additionalInfos');
-        var $additionalInfoStruc = $('.block-additionalInfo').detach();
+      $htmlPage = $($('#additionalInfo').html());
 
-        
-        dataInfoOrg.additionalInfo.forEach(function (block) {
-          var $newInfo = $($additionalInfoStruc).clone();
+      var $additionalInfoBlock = $htmlPage.find('.block-additionalInfos');
+      var $additionalInfoStruc = $additionalInfoBlock.find('.block-additionalInfo').detach();
 
-          $newInfo
-            .find('.description').text(block.description);
 
-          $additionalInfoBlock.append($newInfo);
-          $additionalInfoBlock.append("</br>");
-        });
+      dataInfoOrg.additionalInfo.forEach(function (block) {
+        var $newInfo = $($additionalInfoStruc).clone();
 
+        $newInfo
+          .find('.description').text(block.description);
+
+        $additionalInfoBlock.append($newInfo);
+        $additionalInfoBlock.append("</br>");
       });
+
       break;
 
     case 'museums':
-      $dynamicDiv.load('museums.html .museums', function () {
-        var $museumsBlock = $('.block-museums');
-        var $museumStruc = $('.block-museum').detach();
+      $htmlPage = $($('#museums').html());
 
-        dataInfoOrg.museums.forEach(function (museum) {
-          var $newMuseum = $($museumStruc).clone();
+      var $museumsBlock = $htmlPage.find('.block-museums');
+      var $museumStruc = $museumsBlock.find('.block-museum').detach();
 
-          $newMuseum
-            .find('.description').text(museum.description).end()
-            .find('.exposition').text(museum.exposition).end()
-            .find('.head').text(museum.head).end();
+      dataInfoOrg.museums.forEach(function (museum) {
+        var $newMuseum = $($museumStruc).clone();
 
-          $museumsBlock.append($newMuseum);
-        });
+        $newMuseum
+          .find('.description').text(museum.description).end()
+          .find('.exposition').text(museum.exposition).end()
+          .find('.head').text(museum.head).end();
 
+        $museumsBlock.append($newMuseum);
       });
+
       break;
 
     case 'cabinets':
-      $dynamicDiv.load('cabinets.html .cabinets', function () {
-        var $cabinetsBlock = $('.block-cabinets');
-        var $cabinetStruc = $('.block-cabinet').detach();
+      $htmlPage = $($('#cabinets').html());
 
-        dataInfoOrg.cabinets.forEach(function (cabinet) {
-          var $newCabinet = $($cabinetStruc).clone();
+      var $cabinetsBlock = $htmlPage.find('.block-cabinets');
+      var $cabinetStruc = $cabinetsBlock.find('.block-cabinet').detach();
 
-          $newCabinet
-            .find('.description').text(cabinet.description).end()
-            .find('.head').text(cabinet.exposition).end()
+      dataInfoOrg.cabinets.forEach(function (cabinet) {
+        var $newCabinet = $($cabinetStruc).clone();
 
-          $cabinetsBlock.append($newCabinet);
-        });
+        $newCabinet
+          .find('.description').text(cabinet.description).end()
+          .find('.head').text(cabinet.exposition).end()
 
+        $cabinetsBlock.append($newCabinet);
       });
+
       break;
 
     case 'others':
-      $dynamicDiv.load('others.html .others', function () {
-        var $otherBlock = $('.block-others');
-        var $otherStruc = $('.block-other').detach();
+      $htmlPage = $($('#others').html());
 
-        
-        dataInfoOrg.others.forEach(function (block) {
-          var $newInfo = $($otherStruc).clone();
+      var $otherBlock = $htmlPage.find('.block-others');
+      var $otherStruc = $otherBlock.find('.block-other').detach();
 
-          $newInfo
-            .find('.description').text(block.description);
 
-          $otherBlock.append($newInfo);
-          $otherBlock.append("</br>");
-        });
+      dataInfoOrg.others.forEach(function (block) {
+        var $newInfo = $($otherStruc).clone();
 
+        $newInfo
+          .find('.description').text(block.description);
+
+        $otherBlock.append($newInfo);
+        $otherBlock.append("</br>");
       });
+
       break;
 
     case 'subjects':
-      $dynamicDiv.load('subjects.html .subjects', function () {
-        var $subjectsBlock = $('.block-subjects');
-        var subjectStruc = $('.block-subject').detach();
+      $htmlPage = $($('#subjects').html());
 
-        dataInfoOrg.subjects.forEach(function (subject) {
-          var $newSubject = $(subjectStruc).clone();
+      var $subjectsBlock = $htmlPage.find('.block-subjects');
+      var subjectStruc = $subjectsBlock.find('.block-subject').detach();
 
-          $newSubject
-            .find('.title').text(subject.title).end()
-            .find('.level').text(subject.level).end();
+      dataInfoOrg.subjects.forEach(function (subject) {
+        var $newSubject = $(subjectStruc).clone();
 
-          $subjectsBlock.append($newSubject);
-          $subjectsBlock.append("</br>");
-        });
+        $newSubject
+          .find('.title').text(subject.title).end()
+          .find('.level').text(subject.level).end();
+
+        $subjectsBlock.append($newSubject);
+        $subjectsBlock.append("</br>");
       });
       break;
 
     case 'societies':
-      $dynamicDiv.load('societies.html .societies', function () {
-        var $societiesBlock = $('.block-societies');
-        var societyStruc = $('.block-society').detach();
+      $htmlPage = $($('#societies').html());
+      var $societiesBlock = $htmlPage.find('.block-societies');
+      var societyStruc = $societiesBlock.find('.block-society').detach();
 
-        dataInfoOrg.societies.forEach(function (society) {
-          var $newSociety = $(societyStruc).clone();
+      dataInfoOrg.societies.forEach(function (society) {
+        var $newSociety = $(societyStruc).clone();
 
-          $newSociety
-            .find('.name').text(society.name).end()
-            .find('.class').text(society.class).end()
-            .find('.head').text(society.head).end()
-            .find('.description').text(society.description).end();
+        $newSociety
+          .find('.name').text(society.name).end()
+          .find('.class').text(society.class).end()
+          .find('.head').text(society.head).end()
+          .find('.description').text(society.description).end();
 
-          $societiesBlock.append($newSociety);
-          $societiesBlock.append("</br>");
-        });
+        $societiesBlock.append($newSociety);
+        $societiesBlock.append("</br>");
       });
+
       break;
     case 'collectives':
-      $dynamicDiv.load('collectives.html .collectives', function () {
-        var $collectivesBlock = $('.block-collectives');
-        var collectiveStruc = $('.block-collective').detach();
+      $htmlPage = $($('#collectives').html());
 
-        dataInfoOrg.collectives.forEach(function (collective) {
-          var $newCollective = $(collectiveStruc).clone();
+      var $collectivesBlock = $htmlPage.find('.block-collectives');
+      var collectiveStruc = $collectivesBlock.find('.block-collective').detach();
 
-          $newCollective
-            .find('.name').text(collective.name).end()
-            .find('.ageChildren').text(collective.ageChildren).end()
-            .find('.head').text(collective.head).end()
-            .find('.description').text(collective.description).end();
+      dataInfoOrg.collectives.forEach(function (collective) {
+        var $newCollective = $(collectiveStruc).clone();
 
-          $collectivesBlock.append($newCollective);
-          $collectivesBlock.append("</br>");
-        });
+        $newCollective
+          .find('.name').text(collective.name).end()
+          .find('.ageChildren').text(collective.ageChildren).end()
+          .find('.head').text(collective.head).end()
+          .find('.description').text(collective.description).end();
+
+        $collectivesBlock.append($newCollective);
+        $collectivesBlock.append("</br>");
       });
       break;
 
     case 'events':
-      $dynamicDiv.load('events.html .events', function () {
-        var $eventsBlock = $('.block-events');
-        var eventStruc = $('.block-event').detach();
+      $htmlPage = $($('#events').html());
+      var $eventsBlock = $htmlPage.find('.block-events');
+      var eventStruc = $eventsBlock.find('.block-event').detach();
 
-        dataInfoOrg.events.forEach(function (event) {
-          var $newEvent = $(eventStruc).clone();
+      dataInfoOrg.events.forEach(function (event) {
+        var $newEvent = $(eventStruc).clone();
 
-          $newEvent
-            .find('.name').text(event.name).end()
-            .find('.level').text(event.level).end()
-            .find('.form').text(event.form).end()
-            .find('.date').text(event.date).end();
+        $newEvent
+          .find('.name').text(event.name).end()
+          .find('.level').text(event.level).end()
+          .find('.form').text(event.form).end()
+          .find('.date').text(event.date).end();
 
-          $eventsBlock.append($newEvent);
-          $eventsBlock.append("</br>");
-        });
+        $eventsBlock.append($newEvent);
+        $eventsBlock.append("</br>");
       });
       break;
+
   }
 
-
+  $dynamicDiv.empty();
+  $dynamicDiv.append($htmlPage);
 
 }
