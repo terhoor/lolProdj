@@ -295,6 +295,43 @@ export function funcDynamic() {
       });
       break;
 
+      case 'methodologs':
+      $htmlPage = $($('#methodologs').html());
+      var $methodologsBlock = $htmlPage.find('.block-methodologs');
+      var methodologStruc = $methodologsBlock.find('.block-methodolog').detach();
+
+      dataInfoOrg.methodologs.forEach(function (methodolog) {
+        var $newMethodolog = $(methodologStruc).clone();
+
+        $newMethodolog
+          .find('.name').text(methodolog.name).end()
+          .find('.author').text(methodolog.author).end()
+          .find('.publish').text(methodolog.publish).end()
+          .find('.year').text(methodolog.year).end();
+        $methodologsBlock.append($newMethodolog);
+        $methodologsBlock.append("</br>");
+      });
+
+      break;
+
+      case 'openClassrooms':
+      $htmlPage = $($('#openClassrooms').html());
+      var $openClassroomsBlock = $htmlPage.find('.block-openClassrooms');
+      var openClassroomStruc = $openClassroomsBlock.find('.block-openClassroom').detach();
+
+      dataInfoOrg.openClassrooms.forEach(function (openClassroom) {
+        var $newopenClassroom = $(openClassroomStruc).clone();
+
+        $newopenClassroom
+          .find('.head').text(openClassroom.head).end()
+          .find('.class').text(openClassroom.class).end()
+          .find('.description').text(openClassroom.description).end();
+        $openClassroomsBlock.append($newopenClassroom);
+        $openClassroomsBlock.append("</br>");
+      });
+
+      break;
+
   }
 
   $dynamicDiv.empty();

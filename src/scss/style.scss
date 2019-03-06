@@ -218,5 +218,22 @@ body {
     width: 100%;
   }
 
+  .btn-back {
+    // opacity: 0.5;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: rgb(219, 205, 205);
+    border: 1px solid rgb(184, 176, 65);
+    .btn-text {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      color: rgb(255, 255, 255);
 
+    }
+  }
 }
