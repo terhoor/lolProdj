@@ -37,7 +37,7 @@ var dataInfoOrg;
     `);
 
     $nav.append($(`<li class="nav-item">
-      <a class="nav-link active" data-place="main" href="#main">Главная</a>
+      <a class="nav-link active js-nav-link" data-place="main" href="#main">Главная</a>
     </li>`));
 
     for (var key in typeName) {
@@ -53,7 +53,23 @@ var dataInfoOrg;
 
   };
 
+
+  hideMenu();
+  $(window).resize(function () {
+    hideMenu();
+  });
+
 }());
+
+function hideMenu() {
+  $('.js-nav .js-nav-link').unbind('click');
+  if ($(window).width() <= '991') {
+    $('.js-nav .js-nav-link').on('click', function() {
+      $('.js-btn-collapse').click();
+    });
+  }
+  
+}
 
 export function funcDynamic() {
   var hash = $(this).data('place') || window.location.hash.slice(1) || 'main';
@@ -110,7 +126,7 @@ export function funcDynamic() {
     case 'books':
       $htmlPage = $($('#books').html());
       var $booksBlock = $htmlPage.find('.block-books');
-      var bookStruc = $booksBlock.find('.block-book').detach();
+      var bookStruc = $booksBlock.find('.my-col').detach();
 
       dataInfoOrg.books.forEach(function (book) {
         var $newBook = $(bookStruc).clone();
@@ -128,7 +144,7 @@ export function funcDynamic() {
     case 'teachers':
       $htmlPage = $($('#teachers').html());
       var $teachersBlock = $htmlPage.find('.block-teachers');
-      var $teacherStruc = $teachersBlock.find('.block-teacher').detach();
+      var $teacherStruc = $teachersBlock.find('.my-col-teachers').detach();
 
       dataInfoOrg.teachers.forEach(function (teacher) {
         var $newTeacher = $($teacherStruc).clone();
@@ -148,7 +164,7 @@ export function funcDynamic() {
       $htmlPage = $($('#additionalInfo').html());
 
       var $additionalInfoBlock = $htmlPage.find('.block-additionalInfos');
-      var $additionalInfoStruc = $additionalInfoBlock.find('.block-additionalInfo').detach();
+      var $additionalInfoStruc = $additionalInfoBlock.find('.my-col').detach();
 
 
       dataInfoOrg.additionalInfo.forEach(function (block) {
@@ -167,7 +183,7 @@ export function funcDynamic() {
       $htmlPage = $($('#museums').html());
 
       var $museumsBlock = $htmlPage.find('.block-museums');
-      var $museumStruc = $museumsBlock.find('.block-museum').detach();
+      var $museumStruc = $museumsBlock.find('.my-col').detach();
 
       dataInfoOrg.museums.forEach(function (museum) {
         var $newMuseum = $($museumStruc).clone();
@@ -186,7 +202,7 @@ export function funcDynamic() {
       $htmlPage = $($('#cabinets').html());
 
       var $cabinetsBlock = $htmlPage.find('.block-cabinets');
-      var $cabinetStruc = $cabinetsBlock.find('.block-cabinet').detach();
+      var $cabinetStruc = $cabinetsBlock.find('.my-col').detach();
 
       dataInfoOrg.cabinets.forEach(function (cabinet) {
         var $newCabinet = $($cabinetStruc).clone();
@@ -204,7 +220,7 @@ export function funcDynamic() {
       $htmlPage = $($('#others').html());
 
       var $otherBlock = $htmlPage.find('.block-others');
-      var $otherStruc = $otherBlock.find('.block-other').detach();
+      var $otherStruc = $otherBlock.find('.my-col').detach();
 
 
       dataInfoOrg.others.forEach(function (block) {
@@ -223,7 +239,7 @@ export function funcDynamic() {
       $htmlPage = $($('#subjects').html());
 
       var $subjectsBlock = $htmlPage.find('.block-subjects');
-      var subjectStruc = $subjectsBlock.find('.block-subject').detach();
+      var subjectStruc = $subjectsBlock.find('.my-col').detach();
 
       dataInfoOrg.subjects.forEach(function (subject) {
         var $newSubject = $(subjectStruc).clone();
@@ -240,7 +256,7 @@ export function funcDynamic() {
     case 'societies':
       $htmlPage = $($('#societies').html());
       var $societiesBlock = $htmlPage.find('.block-societies');
-      var societyStruc = $societiesBlock.find('.block-society').detach();
+      var societyStruc = $societiesBlock.find('.my-col').detach();
 
       dataInfoOrg.societies.forEach(function (society) {
         var $newSociety = $(societyStruc).clone();
@@ -260,7 +276,7 @@ export function funcDynamic() {
       $htmlPage = $($('#collectives').html());
 
       var $collectivesBlock = $htmlPage.find('.block-collectives');
-      var collectiveStruc = $collectivesBlock.find('.block-collective').detach();
+      var collectiveStruc = $collectivesBlock.find('.my-col').detach();
 
       dataInfoOrg.collectives.forEach(function (collective) {
         var $newCollective = $(collectiveStruc).clone();
@@ -279,7 +295,7 @@ export function funcDynamic() {
     case 'events':
       $htmlPage = $($('#events').html());
       var $eventsBlock = $htmlPage.find('.block-events');
-      var eventStruc = $eventsBlock.find('.block-event').detach();
+      var eventStruc = $eventsBlock.find('.my-col').detach();
 
       dataInfoOrg.events.forEach(function (event) {
         var $newEvent = $(eventStruc).clone();
@@ -295,10 +311,10 @@ export function funcDynamic() {
       });
       break;
 
-      case 'methodologs':
+    case 'methodologs':
       $htmlPage = $($('#methodologs').html());
       var $methodologsBlock = $htmlPage.find('.block-methodologs');
-      var methodologStruc = $methodologsBlock.find('.block-methodolog').detach();
+      var methodologStruc = $methodologsBlock.find('.my-col').detach();
 
       dataInfoOrg.methodologs.forEach(function (methodolog) {
         var $newMethodolog = $(methodologStruc).clone();
@@ -314,10 +330,10 @@ export function funcDynamic() {
 
       break;
 
-      case 'openClassrooms':
+    case 'openClassrooms':
       $htmlPage = $($('#openClassrooms').html());
       var $openClassroomsBlock = $htmlPage.find('.block-openClassrooms');
-      var openClassroomStruc = $openClassroomsBlock.find('.block-openClassroom').detach();
+      var openClassroomStruc = $openClassroomsBlock.find('.my-col').detach();
 
       dataInfoOrg.openClassrooms.forEach(function (openClassroom) {
         var $newopenClassroom = $(openClassroomStruc).clone();
