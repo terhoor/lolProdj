@@ -107,7 +107,6 @@ export function funcDynamic() {
     case 'main':
       $htmlPage = $($('#main').html());
       dataInfoOrg.organization.forEach(function (block) {
-
         $htmlPage.addOrDelete(block);
       });
 
