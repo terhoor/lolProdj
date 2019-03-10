@@ -107,33 +107,19 @@ export function funcDynamic() {
     case 'main':
       $htmlPage = $($('#main').html());
       dataInfoOrg.organization.forEach(function (block) {
-        $htmlPage.find('.header .header-org').text(block.nameOrganization);
-        $htmlPage.find('.header .header-doc').text(block.numberDocumentation);
-        $htmlPage.find('.header .header-status').text(block.statusOrganization);
+
+        $htmlPage.addOrDelete(block);
       });
 
 
       dataInfoOrg.director.forEach(function (director) {
-        $htmlPage.find('.main-people .block-director')
-          .find('.surname')
-          .text(director.surname).end()
-          .find('.name')
-          .text(director.name).end()
-          .find('.patronymic')
-          .text(director.surname);
+      $htmlPage.find('.main-people .block-director').addOrDelete(director);
       });
 
       dataInfoOrg.responsible.forEach(function (responsible) {
-        $htmlPage.find('.main-people .block-responsible')
-          .find('.surname')
-          .text(responsible.surname).end()
-          .find('.name')
-          .text(responsible.name).end()
-          .find('.patronymic')
-          .text(responsible.surname).end()
-          .find('.telephone')
-          .text(responsible.telephone);
+      $htmlPage.find('.main-people .block-responsible').addOrDelete(responsible);
       });
+      
 
       break;
 

@@ -87,11 +87,11 @@
 <script id="main" type="text/x-handlebars-template">
   <main class="main">
     <header class="header">
-      <h1 class="header-org"></h1>
+      <h1 class="block-nameOrganization"><span class="nameOrganization"></span></h1>
       <br>
-      <p class="header-status shadow"></p>
+      <p class="block-statusOrganization shadow"><span class="statusOrganization"></span></p>
       <br>
-      <p class="header-doc shadow"></p>
+      <p class="block-numberDocumentation shadow"><span class="numberDocumentation"></span></p>
     </header>
 
     <hr>
@@ -104,15 +104,15 @@
       </div>
       <div class="block-responsible">
         <span class="bold">Ответственный:</span>
-
         <span class="surname"></span>
         <span class="name"></span>
-        <span class="patronymic"></span>,
-        <span class="bold">телефон:</span>
-        <span class="telephone"></span>
+        <span class="patronymic"></span>
+        <span class="block-telephone">,
+          <span class="bold">телефон:</span>
+          <span class="telephone"></span>
+        </span>
 
       </div>
-    </div>
   </main>
 </script>
 
