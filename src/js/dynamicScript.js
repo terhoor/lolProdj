@@ -1,6 +1,20 @@
 import $ from "jquery";
 var dataInfoOrg;
 
+$.fn.addOrDelete = function(nameParam) {
+  var property = '';
+  for (var param in nameParam) {
+    property = nameParam[param];
+    if (property) {
+      this.find(`.${param}`).text(property);
+    }
+    else {
+      this.find(`.block-${param}`).remove();
+    }
+  }
+  return this;  
+};
+
 (function () {
   var urlParams = new URLSearchParams(window.location.search);
   var idOrg = urlParams.get('id');
@@ -131,11 +145,7 @@ export function funcDynamic() {
       dataInfoOrg.books.forEach(function (book) {
         var $newBook = $(bookStruc).clone();
 
-        $newBook
-          .find('.name').text(book.name).end()
-          .find('.author').text(book.author).end()
-          .find('.publish').text(book.publish).end()
-          .find('.year').text(book.year).end();
+        $newBook.addOrDelete(book);
         $booksBlock.append($newBook);
         $booksBlock.append("</br>");
       });
@@ -149,11 +159,7 @@ export function funcDynamic() {
       dataInfoOrg.teachers.forEach(function (teacher) {
         var $newTeacher = $($teacherStruc).clone();
 
-        $newTeacher
-          .find('.name').text(teacher.name).end()
-          .find('.surname').text(teacher.surname).end()
-          .find('.patronymic').text(teacher.patronymic).end();
-
+        $newTeacher.addOrDelete(teacher);
         $teachersBlock.append($newTeacher);
         $teachersBlock.append("</br>");
       });
@@ -188,11 +194,7 @@ export function funcDynamic() {
       dataInfoOrg.museums.forEach(function (museum) {
         var $newMuseum = $($museumStruc).clone();
 
-        $newMuseum
-          .find('.description').text(museum.description).end()
-          .find('.exposition').text(museum.exposition).end()
-          .find('.head').text(museum.head).end();
-
+        $newMuseum.addOrDelete(museum);
         $museumsBlock.append($newMuseum);
       });
 
@@ -207,10 +209,7 @@ export function funcDynamic() {
       dataInfoOrg.cabinets.forEach(function (cabinet) {
         var $newCabinet = $($cabinetStruc).clone();
 
-        $newCabinet
-          .find('.description').text(cabinet.description).end()
-          .find('.head').text(cabinet.exposition).end()
-
+        $newCabinet.addOrDelete(cabinet);
         $cabinetsBlock.append($newCabinet);
       });
 
@@ -228,7 +227,6 @@ export function funcDynamic() {
 
         $newInfo
           .find('.description').text(block.description);
-
         $otherBlock.append($newInfo);
         $otherBlock.append("</br>");
       });
@@ -244,10 +242,7 @@ export function funcDynamic() {
       dataInfoOrg.subjects.forEach(function (subject) {
         var $newSubject = $(subjectStruc).clone();
 
-        $newSubject
-          .find('.title').text(subject.title).end()
-          .find('.level').text(subject.level).end();
-
+        $newSubject.addOrDelete(subject);
         $subjectsBlock.append($newSubject);
         $subjectsBlock.append("</br>");
       });
@@ -261,12 +256,7 @@ export function funcDynamic() {
       dataInfoOrg.societies.forEach(function (society) {
         var $newSociety = $(societyStruc).clone();
 
-        $newSociety
-          .find('.name').text(society.name).end()
-          .find('.class').text(society.class).end()
-          .find('.head').text(society.head).end()
-          .find('.description').text(society.description).end();
-
+        $newSociety.addOrDelete(society);
         $societiesBlock.append($newSociety);
         $societiesBlock.append("</br>");
       });
@@ -281,12 +271,7 @@ export function funcDynamic() {
       dataInfoOrg.collectives.forEach(function (collective) {
         var $newCollective = $(collectiveStruc).clone();
 
-        $newCollective
-          .find('.name').text(collective.name).end()
-          .find('.ageChildren').text(collective.ageChildren).end()
-          .find('.head').text(collective.head).end()
-          .find('.description').text(collective.description).end();
-
+        $newCollective.addOrDelete(collective);
         $collectivesBlock.append($newCollective);
         $collectivesBlock.append("</br>");
       });
@@ -300,12 +285,7 @@ export function funcDynamic() {
       dataInfoOrg.events.forEach(function (event) {
         var $newEvent = $(eventStruc).clone();
 
-        $newEvent
-          .find('.name').text(event.name).end()
-          .find('.level').text(event.level).end()
-          .find('.form').text(event.form).end()
-          .find('.date').text(event.date).end();
-
+        $newEvent.addOrDelete(event);
         $eventsBlock.append($newEvent);
         $eventsBlock.append("</br>");
       });
@@ -319,11 +299,7 @@ export function funcDynamic() {
       dataInfoOrg.methodologs.forEach(function (methodolog) {
         var $newMethodolog = $(methodologStruc).clone();
 
-        $newMethodolog
-          .find('.name').text(methodolog.name).end()
-          .find('.author').text(methodolog.author).end()
-          .find('.publish').text(methodolog.publish).end()
-          .find('.year').text(methodolog.year).end();
+        $newMethodolog.addOrDelete(methodolog);
         $methodologsBlock.append($newMethodolog);
         $methodologsBlock.append("</br>");
       });
@@ -338,10 +314,7 @@ export function funcDynamic() {
       dataInfoOrg.openClassrooms.forEach(function (openClassroom) {
         var $newopenClassroom = $(openClassroomStruc).clone();
 
-        $newopenClassroom
-          .find('.head').text(openClassroom.head).end()
-          .find('.class').text(openClassroom.class).end()
-          .find('.description').text(openClassroom.description).end();
+        $newopenClassroom.addOrDelete(openClassroom);
         $openClassroomsBlock.append($newopenClassroom);
         $openClassroomsBlock.append("</br>");
       });
@@ -353,4 +326,6 @@ export function funcDynamic() {
   $dynamicDiv.empty();
   $dynamicDiv.append($htmlPage);
 
+
+  
 }
