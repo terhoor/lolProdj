@@ -45,7 +45,7 @@ $(function () {
   $(document).on('click', '.show-organization', function (e) {
     var id = $(e.target).data('id');
     // $(location).attr('href', window.location + $(e.target).data('id'));
-    $(location).attr('href', 'second.html' + `?id=${id}`);
+    $(location).attr('href', 'primary.html' + `?id=${id}`);
 
   });
 
