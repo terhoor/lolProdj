@@ -29,6 +29,7 @@ $.fn.addOrDelete = function(nameParam) {
         res = JSON.parse(result);
       }
     });
+    console.log(res);
     return res;
   }();
 

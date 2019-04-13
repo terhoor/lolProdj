@@ -7,6 +7,58 @@
   src: url(../fonts/Roboto-Regular.ttf);
 }
 
+.container-map {
+  background:url(../img/grid.jpg) repeat;
+  height: 700px;
+}
+
+.wrapper {
+  margin:0 auto;
+  width: 810px;
+  padding: 20px;
+  position:relative;
+}
+
+#map {
+  float:left;
+  clear:both;
+  width: 810px;
+  height:700px;
+  cursor: pointer;
+}
+
+.point {
+  position:absolute;
+  display:none;
+  padding:10px 15px;
+  background:#7BB9F0;
+  font-size:14px;
+  font-weight:bold;
+  -moz-border-radius:8px;
+}
+
+.point .close {
+  display:block;
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  width:24px;
+  height:24px;
+  text-indent:-9999px;
+  outline:none;
+  background:url(../img/close.png) no-repeat;
+}
+
+.point img {
+  vertical-align:middle;
+  margin-right:10px;
+}
+
+a img {
+  border:none;
+}
+
+
 html, body {
   padding: 0;
   margin: 0;
@@ -229,6 +281,43 @@ body {
   .title-header {
     display: flex;
     justify-content: center;
+  }
+
+  .block-btn-glass {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  a.btn-glass {
+    position: relative;
+    display: inline-block;
+    color: rgb(235, 230, 230);
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+    user-select: none;
+    padding: 1em 2em;
+    outline: none;
+    border-radius: 3px / 100%;
+    background-image:
+     linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+     linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+     linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+     linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+     linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+     linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+    background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+    box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+  }
+  a.btn-glass:hover {
+    transition: .5s linear;
+    background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+  }
+  a.btn-glass:active {
+    top: 1px;
   }
 }
 
