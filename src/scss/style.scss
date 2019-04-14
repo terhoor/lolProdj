@@ -9,13 +9,12 @@
 
 .container-map {
   background:url(../img/grid.jpg) repeat;
-  height: 700px;
+  height:660px;  
 }
 
 .wrapper {
   margin:0 auto;
   width: 810px;
-  padding: 20px;
   position:relative;
 }
 
@@ -23,7 +22,7 @@
   float:left;
   clear:both;
   width: 810px;
-  height:700px;
+  height:660px;
   cursor: pointer;
 }
 
@@ -58,7 +57,6 @@ a img {
   border:none;
 }
 
-
 html, body {
   padding: 0;
   margin: 0;
@@ -71,6 +69,35 @@ body {
   font-weight: normal;
   .ornament {
     width: 4rem;
+  }
+
+  .title-block {
+    padding: 20px 0;
+    background:url(../img/bg-header.jpg) center center repeat;
+    background-size: contain;
+    color: black;
+    height: 100px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+  .footer-map {
+    background:url(../img/bg-footer.jpg) no-repeat;
+    height: 200px;
+    padding-top: 64px;
+    background-size: cover;
+    width: 100%;
+    text-align: center;
+  }
+
+  .block-text {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
   }
   
   .background-wrapper-img {
