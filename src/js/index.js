@@ -1,14 +1,25 @@
 import $ from "jquery";
 import { funcDynamic } from './dynamicScript.js';
+import {areaName} from './paths.js';
 import './init.js';
 
 
 $(function () {
+  
+  (function() {
+    areaName.sort();
+
+    areaName.forEach((el) => {
+      $('.block-area').append(`<div class="text-area">${el}</div>`)
+    })
+  }());
+
   var data;
   $.ajax({
     url: "http://map.e908476u.beget.tech/api/organizations",
     success: function (result) {
       data = JSON.parse(result);;
+      console.log(result);
       startGeneratePoints();
     }
   });
