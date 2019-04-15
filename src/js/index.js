@@ -5,10 +5,22 @@ import './init.js';
 
 
 $(function () {
+
+  function resizeForMap() {
+    const widthD = $(window).width();;
+    if (widthD >= 768) {
+      $('.container-map').css('display', 'block');
+    } else {
+      $('.container-map').css('display', 'none');
+    }
+  }
+
+  $(window).resize(function() {
+    resizeForMap();
+  });
   
   (function() {
     areaName.sort();
-
     areaName.forEach((el) => {
       $('.block-area').append(`<div class="text-area">${el}</div>`)
     })
@@ -25,8 +37,11 @@ $(function () {
   });
 
   function startGeneratePoints() {
+  
     if ($('#map').length === 0) {
       funcDynamic();
+    } else {
+      resizeForMap();
     }
   }
 
