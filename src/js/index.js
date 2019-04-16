@@ -1,7 +1,7 @@
 import $ from "jquery";
 import { funcDynamic } from './dynamicScript.js';
 import { areaName } from './paths.js';
-import './init.js';
+import {startMap} from './init.js';
 
 
 $(function () {
@@ -19,6 +19,7 @@ $(function () {
     resizeForMap();
   });
 
+
   (function () {
     areaName.sort();
     areaName.forEach((el) => {
@@ -26,12 +27,11 @@ $(function () {
     })
   }());
 
-  var data;
+   var objOrg;
   $.ajax({
     url: "http://map.e908476u.beget.tech/api/organizations",
     success: function (result) {
-      data = JSON.parse(result);;
-      console.log(result);
+      objOrg = JSON.parse(result);;
       startGeneratePoints();
     }
   });
@@ -41,11 +41,13 @@ $(function () {
     if ($('#map').length === 0) {
       funcDynamic();
     } else {
+      startMap(objOrg);
       resizeForMap();
     }
   }
 
-  $(document).on('click', '.show-organization', function (e) {
+  $(document).on('click', 'a', function (e) {
+    console.log(123);
     var id = $(e.target).data('id');
     // $(location).attr('href', window.location + $(e.target).data('id'));
     $(location).attr('href', 'primary.html' + `?id=${id}`);

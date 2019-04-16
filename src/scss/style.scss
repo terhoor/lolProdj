@@ -7,33 +7,31 @@
   src: url(../fonts/Roboto-Regular.ttf);
 }
 
-/* to the body element */
 .noscroll { overflow: hidden; }
 
 .overlay { 
-   position: fixed; 
-   overflow-y: scroll;
-   top: 0; right: 0; bottom: 0; left: 0; }
+  position: fixed; 
+  overflow-y: scroll;
+  top: 0; right: 0; bottom: 0; left: 0;
+  }
 
 [aria-hidden="true"] { display: none; }
 [aria-hidden="false"] { display: block; }
 
-/* this code is not strictly necessary: just to make this demo a bit pleasant */
-
-.overlay div {
-   margin: 15vh auto;
-   width: 80%;
-   max-width: 650px;
-   padding: 30px;
-   min-height: 100vh;
-   background: rgba(255,255,255, .95);
+.overlay .popup {
+  margin: 15vh auto;
+  width: 80%;
+  max-width: 650px;
+  padding: 30px;
+  min-height: 50vh;
+  background: rgba(255,255,255, .95);
+  position: relative;
+  z-index: 9999;
+  color: black;
 }
+
 .overlay {
     background:  rgba(40,40,40, .75);
-}
-
-.popup {
-  position: relative;
 }
 
 .close {
@@ -50,6 +48,13 @@
 
 .close:hover {
   color: #000;
+}
+
+.block-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh;
 }
 
 .container-map {
@@ -98,8 +103,27 @@
   margin-right:10px;
 }
 
-a img {
-  border:none;
+.content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.content ul li {
+  list-style: none;
+  padding: 10px 0px;
+
+}
+
+.content ul li .content-name-area {
+  cursor: pointer;
+  display: block;
+  transition: 1s;
+  color: rgb(0, 0, 0);
+
+}
+
+.content ul li .content-name-area:hover {
+  color: rgb(146, 146, 146);
 }
 
 html, body {
@@ -190,7 +214,7 @@ body {
     height: 100wh;
     .title-map {
       text-align: center;
-      font-size: 32px;
+      font-size: 2rem;
     }
     .block-map {
       width: 100%;
@@ -425,4 +449,17 @@ body {
       }
     }
   }
+}
+
+@media (max-width: 475px) {
+  .area-name {
+    font-size: 1.5rem;
+  }
+
+  .container-main .title-block {
+    .title-map {
+      font-size: 1.5rem;
+    }
+  }
+  
 }
