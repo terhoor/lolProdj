@@ -23,7 +23,7 @@ $(function(){
 		obj.attr(attributes);
 		
 		arr[obj.id] = country;
-		
+		console.log(obj);
 		obj
 		.hover(function(){
 			var point = this.getBBox(0);	
@@ -51,6 +51,7 @@ $(function(){
       body.addClass('noscroll');
       overlay.scrollTop = 0;
       console.log(222);
+      console.log(paths[arr[this.id]].name);
 			
 		});
 		
