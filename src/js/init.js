@@ -3,7 +3,10 @@ import  Raphael from 'raphael';
 import {paths} from './paths.js';
 
 $(function(){
-	
+  
+  var overlay = $('.overlay');
+  var body = $('body');
+
 	var r = Raphael('map'),
 		attributes = {
             fill: '#fff',
@@ -44,32 +47,17 @@ $(function(){
 		})
 		.click(function(){
 			document.location.hash = arr[this.id];
-			
-			var point = this.getBBox(0);
-			
-			$('#map').next('.point').remove();
-			
-			$('#map').after($('<div />').addClass('point'));
-			
-			$('.point')
-			.html(paths[arr[this.id]].name)
-			.prepend($('<a />').attr('href', '#').addClass('close').text('Закрыть'))
-			.prepend($('<img />').attr('src', 'flags/'+arr[this.id]+'.png'))
-			.css({
-				left: point.x+(point.width/2)-80,
-				top: point.y+(point.height/2)-20
-			})
-			.fadeIn();
+      overlay.attr('aria-hidden', !true);
+      body.addClass('noscroll');
+      overlay.scrollTop = 0;
+      console.log(222);
 			
 		});
 		
-		$(document).find('.point .close').on('click', function(){
-			var t = $(this),
-				parent = t.parent('.point');
-			
-			parent.fadeOut(function(){
-				parent.remove();
-			});
+		$('.overlay').find('.close').on('click', function(){
+      overlay.attr('aria-hidden', true);
+      body.removeClass('noscroll');
+      console.log(123);
 			return false;
 		});
 		

@@ -7,6 +7,51 @@
   src: url(../fonts/Roboto-Regular.ttf);
 }
 
+/* to the body element */
+.noscroll { overflow: hidden; }
+
+.overlay { 
+   position: fixed; 
+   overflow-y: scroll;
+   top: 0; right: 0; bottom: 0; left: 0; }
+
+[aria-hidden="true"] { display: none; }
+[aria-hidden="false"] { display: block; }
+
+/* this code is not strictly necessary: just to make this demo a bit pleasant */
+
+.overlay div {
+   margin: 15vh auto;
+   width: 80%;
+   max-width: 650px;
+   padding: 30px;
+   min-height: 200vh;
+   background: rgba(255,255,255, .95);
+}
+.overlay {
+    background:  rgba(40,40,40, .75);
+}
+
+.popup {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-family: Arial, Helvetica, sans-serif;  
+  font-weight: bold;
+  cursor: pointer;
+  color: #434343;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.close:hover {
+  color: #000;
+}
+
 .container-map {
   background:url(../img/grid.jpg) repeat;
   height:660px;  

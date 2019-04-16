@@ -1,6 +1,6 @@
 import $ from "jquery";
 import { funcDynamic } from './dynamicScript.js';
-import {areaName} from './paths.js';
+import { areaName } from './paths.js';
 import './init.js';
 
 
@@ -15,11 +15,20 @@ $(function () {
     }
   }
 
-  $(window).resize(function() {
+  $('.open_popup').click(function () {
+    var popup_id = $('#' + $(this).attr("rel"));
+    $(popup_id).show();
+    $('.overlay').show();
+  })
+  $('.popup .close, .overlay').click(function () {
+    $('.overlay, .popup').hide();
+  })
+
+  $(window).resize(function () {
     resizeForMap();
   });
-  
-  (function() {
+
+  (function () {
     areaName.sort();
     areaName.forEach((el) => {
       $('.block-area').append(`<div class="text-area">${el}</div>`)
@@ -37,7 +46,7 @@ $(function () {
   });
 
   function startGeneratePoints() {
-  
+
     if ($('#map').length === 0) {
       funcDynamic();
     } else {
@@ -54,7 +63,7 @@ $(function () {
 
   $(document).on('click', '.nav-link', funcDynamic);
 
-  $('.js-btn-glass').on('click', function() {
+  $('.js-btn-glass').on('click', function () {
     window.location = window.location.origin;
   });
 
