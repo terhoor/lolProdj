@@ -29,7 +29,6 @@ $.fn.addOrDelete = function(nameParam) {
         res = JSON.parse(result);
       }
     });
-    console.log(res);
     return res;
   }();
 
@@ -79,6 +78,7 @@ $.fn.addOrDelete = function(nameParam) {
 function hideMenu() {
   $('.js-nav .js-nav-link').unbind('click');
   if ($(window).width() <= '991') {
+
     $('.js-nav .js-nav-link').on('click', function() {
       $('.js-btn-collapse').click();
     });

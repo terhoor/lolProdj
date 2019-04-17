@@ -1,285 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./border.scss";
 @import "./popup.scss";
+@import "./map.scss";
+@import "./primary.scss";
 
 html, body {
   padding: 0;
   margin: 0;
   color: rgb(230, 230, 230);
-  // font-size: 12px;
-}
-
-body {
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
-  .ornament {
-    width: 4rem;
-  }
-
-.container-map {
-  background:url(../img/grid.jpg) repeat;
-  height:660px;  
 }
-
-.wrapper {
-  margin:0 auto;
-  width: 715px;
-  position:relative;
-}
-
-#map {
-  float:left;
-  clear:both;
-  width: 715px;
-  height:660px;
-  cursor: pointer;
-}
-
-.point {
-  position:absolute;
-  display:none;
-  padding:10px 15px;
-  background:#7BB9F0;
-  font-size:14px;
-  font-weight:bold;
-  -moz-border-radius:8px;
-}
-
-.point .close {
-  display:block;
-  position:absolute;
-  top:-10px;
-  right:-10px;
-  width:24px;
-  height:24px;
-  text-indent:-9999px;
-  outline:none;
-  background:url(../img/close.png) no-repeat;
-}
-
-.point img {
-  vertical-align:middle;
-  margin-right:10px;
-}
-
-.content ul {
-  list-style: none;
-  padding: 0;
-}
-
-.content ul li {
-  list-style: none;
-  padding: 10px 0px;
-
-}
-
-.content ul li .content-name-area {
-  cursor: pointer;
-  display: block;
-  transition: 1s;
-  color: rgb(0, 0, 0);
-z-index: 9999;
-}
-
-.content ul li .content-name-area:hover {
-  color: rgb(146, 146, 146);
-}
-
-  .title-block {
-    padding: 20px 0;
-    background:url(../img/bg-header.jpg) center center repeat;
-    background-size: contain;
-    color: black;
-    height: 100px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .block-area {
-    text-align: center;
-    padding: 20px 0px; 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .block-area .text-area {
-    cursor: pointer;
-    color: black;
-    padding: 5px;
-    border-bottom: 1px solid transparent;
-    transition: 1s;
-  }
-
-  .block-area .text-area:hover {
-    color: rgb(22, 22, 22);
-    border-bottom: 1px solid rgb(22, 22, 22);
-  }
-
-  
-  .footer-map {
-    background:url(../img/bg-footer.jpg) no-repeat;
-    height: 200px;
-    padding-top: 64px;
-    background-size: cover;
-    width: 100%;
-    text-align: center;
-  }
-
-  .block-text {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .background-wrapper-img {
-    position: fixed;
-    z-index: -9;
-    top:0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0.49;
-    background-color: #030303;
-  }
-
-  .background-img {
-    // opacity: 0.5;
-    position: fixed;
-    z-index: -10;
-    top:0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-
-  .container-main {
-    height: 100wh;
-    .title-map {
-      text-align: center;
-      font-size: 2rem;
-    }
-    .block-map {
-      width: 100%;
-      height: 400px;
-    }
-  }
-
-  .block-nav {
-    display: flex;
-    .ornament {
-      width: 4rem;
-    }
-  }
-
-  .nav-link {
-    font-size: 16px;
-  }
-  
-  .block-ornament {
-    background: white;
-    border-radius: 50%;
-    padding: 10px;
-    margin-right: 20px;
-  }
-
-  .navbar-nav {
-    flex-wrap: wrap;
-  }
-
-  .navbar {
-    z-index: 1;
-  }
-
-  .header {
-    padding: 20px 0 0 0;
-
-    .block-nameOrganization {
-      font-size: 1.75rem;
-      font-weight: 700;
-      text-align: center;
-    }
-  }
-
-  
-  .dynamic-place {
-    padding-top: 20px;
-  }
-
-  .books {
-    .block-book {
-      padding-bottom: 20px;
-    }
-  }
-
-  .bold {
-    font-weight: 700;
-  }
-
-  .teachers {
-    .block-teacher {
-      font-size: 1.5rem;
-    }
-  }
-  .block-museum {
-    margin-bottom: 1.25rem;
-  }
-
-  .block-other, .block-additionalInfo {
-    padding: 0 10px;
-  }
-
-
-  .my-col {
-    margin-bottom: 30px;
-  }
-
-  .height-full {
-    height: 100%;
-  }
-
-  
-
-
-  .main-people {
-    text-align: center;
-  }
-
-  
-
-  .title-additionalInfo {
-    text-align: center;
-    width: 100%;
-  }
-
-  .btn-back {
-    // opacity: 0.5;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: rgb(219, 205, 205);
-    border: 1px solid rgb(184, 176, 65);
-    .btn-text {
-      position: relative;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      color: rgb(255, 255, 255);
-
-    }
-  }
-
-  .title-header {
-    display: flex;
-    justify-content: center;
-  }
-
-}
-
 
 @media (max-width: 768px) {
   html {
@@ -289,6 +20,10 @@ z-index: 9999;
       .block-teacher {
         font-size: 1.2rem;
       }
+    }
+
+    .dynamic-place {
+      margin-bottom: 80px;
     }
   }
 }
@@ -303,5 +38,7 @@ z-index: 9999;
       font-size: 1.5rem;
     }
   }
+  
+  
   
 }

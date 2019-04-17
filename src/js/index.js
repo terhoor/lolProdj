@@ -1,4 +1,5 @@
 import $ from "jquery";
+import "bootstrap";
 import { funcDynamic } from './dynamicScript.js';
 import { areaName } from './paths.js';
 import { startMap } from './init.js';
@@ -14,6 +15,7 @@ $(function () {
       $('.container-map').css('display', 'none');
     }
   }
+
 
   $(window).resize(function () {
     resizeForMap();
