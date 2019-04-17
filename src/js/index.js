@@ -48,7 +48,7 @@ $(function () {
 
   $(document).on('click', '.nav-link', funcDynamic);
 
-  $('.js-btn-glass').on('click', function () {
+  $('.js-btn-glass, .block-ornament').on('click', function () {
     window.location = window.location.origin;
   });
 

@@ -1,0 +1,108 @@
+
+  .shadow {
+    padding: 1.25rem;
+    border: 1px solid #f0f0f0;
+    border-bottom: 2px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .shadow-d {
+    padding: 20px;
+    border: 1px solid #887777;
+    border-bottom: 2px solid rgb(167, 148, 148);
+    border-radius: 5px;
+
+  }
+
+  .shadow-f {
+    border: 10px ridge #dfdbd9;
+    padding: 10px 20px 10px 20px;
+    margin: 1.25rem auto;
+    width: 100%;
+    }
+
+    .my-border-ref {
+
+      margin: 20px 10px;
+      text-align: center;
+      position:relative;
+      display: inline-block;
+      padding: 0px 20px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 20px;
+      background: white;
+      box-shadow:0px 0px 5px rgba(0,0,0,0.3);
+      color: #030303;
+    }
+  
+    .my-border-ref:before{
+  
+      content: '';
+      width: 110%;
+      left: 0;
+      height: 111%;
+      z-index:-1;
+      position:absolute;
+      border-radius:20px;
+      border: 1px solid rgba(0,0,0, 0.1);
+      background: rgba(0, 0, 0, 0.0);
+      -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+      -webkit-transform: 	translate(-5%,-5%);
+      -moz-transform: translate(-5%, -5%);
+      -o-transform: translate(-5%, -5%);
+      transform: translate(-5%, -5%);
+  
+    }
+  
+    .my-border-ref:after{
+      content: '';
+      position:absolute;
+      top:-25px; left: 30%;
+      width: 130px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.1);
+      background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1,rgba(0, 0, 0, 0.2)));
+      background: -moz-linear-gradient(555% 0 180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.2) 10%, rgba(0,0,0,0.0));
+      border-left: 1px dashed rgba(0, 0, 0, 0.1);
+      border-right: 1px dashed rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+    }
+
+.block-btn-glass {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+a.btn-glass {
+  position: relative;
+  display: inline-block;
+  color: rgb(235, 230, 230);
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+  user-select: none;
+  padding: 1em 2em;
+  outline: none;
+  border-radius: 3px / 100%;
+  background-image:
+   linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+   linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+  background-repeat: no-repeat;
+  background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+  background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+  box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+}
+a.btn-glass:hover {
+  transition: .5s linear;
+  background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+}
+a.btn-glass:active {
+  top: 1px;
+}
