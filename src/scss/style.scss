@@ -15,8 +15,12 @@
   top: 0; right: 0; bottom: 0; left: 0;
   }
 
-[aria-hidden="true"] { display: none; }
-[aria-hidden="false"] { display: block; }
+[aria-hidden="true"] { 
+  display: none; 
+}
+[aria-hidden="false"] { 
+  display: block;
+ }
 
 .overlay .popup {
   margin: 15vh auto;
@@ -26,7 +30,7 @@
   min-height: 50vh;
   background: rgba(255,255,255, .95);
   position: relative;
-  z-index: 9999;
+  z-index: 9000;
   color: black;
 }
 
@@ -119,7 +123,7 @@
   display: block;
   transition: 1s;
   color: rgb(0, 0, 0);
-
+z-index: 9999;
 }
 
 .content ul li .content-name-area:hover {

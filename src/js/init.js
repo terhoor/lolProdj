@@ -2,19 +2,24 @@ import $ from "jquery";
 import Raphael from 'raphael';
 import { paths } from './paths.js';
 
-function generateInfo (nameOrg, data) {
+function generateInfo(nameOrg, data) {
   var $overlay = $('.overlay');
   var $content = $('.content');
   $overlay.find('.content').empty();
   var $containerUl = $('<ul></ul>');
   data.forEach((org) => {
     if (org.area === nameOrg) {
-      console.log(org);
-      $containerUl.append(`<li><a class="content-name-area show-organization" data-id="${org.id}">${org.nameOrganization} (${org.reduction})</a></li>`)
+      const elem = $(`<li><a href="#" class="content-name-area show-organization" data-id="${org.id}">${org.nameOrganization} (${org.reduction})</a></li>`);
+      elem.on('click', function (e) {
+        var id = $(e.target).data('id');
+        $(location).attr('href', 'primary.html' + `?id=${id}`);
+
+      })
+      $containerUl.append(elem);
     }
   });
 
-  
+
   if ($containerUl.find('li').length) {
     $containerUl.appendTo($content);
   } else {
@@ -23,7 +28,8 @@ function generateInfo (nameOrg, data) {
 }
 
 
-export function startMap (objOrg) {
+
+export function startMap(objOrg) {
 
   var overlay = $('.overlay');
   var body = $('body');
@@ -65,11 +71,12 @@ export function startMap (objOrg) {
       .click(function () {
         var nameArea = paths[arr[this.id]].name;
         document.location.hash = arr[this.id];
-        overlay.attr('aria-hidden', !true);
+        // overlay.attr('aria-hidden', !true);
         body.addClass('noscroll');
+        overlay.fadeIn();
         overlay.scrollTop = 0;
         $('.area-name').text(nameArea);
-         generateInfo(nameArea, objOrg);
+        generateInfo(nameArea, objOrg);
       });
 
   }
@@ -81,11 +88,24 @@ export function startMap (objOrg) {
     const overlayS = $(target).is('.overlay') || $(target).is('.close');
     const closeS = $(target).is('.close');
     if (overlayS || closeS) {
-      overlay.attr('aria-hidden', true);
-      body.removeClass('noscroll');
+      // overlay.attr('aria-hidden', true);
+      overlay.fadeOut('fast', function() {
+        body.removeClass('noscroll');
+      });
     }
 
     return false;
+  });
+
+  $('.js-popup').on('click', function () {
+    var nameArea = $(this).text();
+    document.location.hash = nameArea;
+    body.addClass('noscroll');
+    overlay.fadeIn();
+    // overlay.attr('aria-hidden', !true);
+    overlay.scrollTop = 0;
+    $('.area-name').text(nameArea);
+    generateInfo(nameArea, objOrg);
   });
 
 };
