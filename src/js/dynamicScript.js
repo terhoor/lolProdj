@@ -32,7 +32,16 @@ $.fn.addOrDelete = function(nameParam) {
     return res;
   }();
 
-  generateMenu();
+  if (dataInfoOrg === undefined) {
+    window.location = window.location.origin + '/404';
+  } else {
+    generateMenu();
+    hideMenu();
+    $(window).resize(function () {
+      hideMenu();
+    });
+  }
+
 
   function generateMenu() {
     var typeName;
@@ -67,11 +76,6 @@ $.fn.addOrDelete = function(nameParam) {
 
   };
 
-
-  hideMenu();
-  $(window).resize(function () {
-    hideMenu();
-  });
 
 }());
 

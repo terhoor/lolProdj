@@ -1,5 +1,5 @@
-import $ from "jquery";
 import "bootstrap";
+import $ from "jquery";
 import { funcDynamic } from './dynamicScript.js';
 import { areaName } from './paths.js';
 import { startMap } from './init.js';
