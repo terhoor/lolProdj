@@ -94,10 +94,6 @@ const config = {
     }),
     new CopyWebpackPlugin([
       {
-        from: "./src/fonts",
-        to: "./fonts"
-      },
-      {
         from: "./src/favicon",
         to: "./favicon"
       },

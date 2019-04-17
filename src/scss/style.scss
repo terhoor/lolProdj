@@ -1,66 +1,20 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./border.scss";
+@import "./popup.scss";
 
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/Roboto-Regular.ttf);
+html, body {
+  padding: 0;
+  margin: 0;
+  color: rgb(230, 230, 230);
+  // font-size: 12px;
 }
 
-.noscroll { overflow: hidden; }
-
-.overlay { 
-  position: fixed; 
-  overflow-y: scroll;
-  top: 0; right: 0; bottom: 0; left: 0;
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  .ornament {
+    width: 4rem;
   }
-
-[aria-hidden="true"] { 
-  display: none; 
-}
-[aria-hidden="false"] { 
-  display: block;
- }
-
-.overlay .popup {
-  margin: 15vh auto;
-  width: 80%;
-  max-width: 650px;
-  padding: 30px;
-  min-height: 50vh;
-  background: rgba(255,255,255, .95);
-  position: relative;
-  z-index: 9000;
-  color: black;
-}
-
-.overlay {
-    background:  rgba(40,40,40, .75);
-}
-
-.close {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  font-family: Arial, Helvetica, sans-serif;  
-  font-weight: bold;
-  cursor: pointer;
-  color: #434343;
-  padding: 20px;
-  font-size: 20px;
-}
-
-.close:hover {
-  color: #000;
-}
-
-.block-empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 25vh;
-}
 
 .container-map {
   background:url(../img/grid.jpg) repeat;
@@ -130,20 +84,6 @@ z-index: 9999;
 .content ul li .content-name-area:hover {
   color: rgb(146, 146, 146);
 }
-
-html, body {
-  padding: 0;
-  margin: 0;
-  color: rgb(230, 230, 230);
-  // font-size: 12px;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: normal;
-  .ornament {
-    width: 4rem;
-  }
 
   .title-block {
     padding: 20px 0;

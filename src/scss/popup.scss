@@ -1,0 +1,53 @@
+.noscroll { overflow: hidden; }
+
+.overlay { 
+  position: fixed; 
+  overflow-y: scroll;
+  top: 0; right: 0; bottom: 0; left: 0;
+  }
+
+[aria-hidden="true"] { 
+  display: none; 
+}
+[aria-hidden="false"] { 
+  display: block;
+ }
+
+.overlay .popup {
+  margin: 15vh auto;
+  width: 80%;
+  max-width: 650px;
+  padding: 30px;
+  min-height: 50vh;
+  background: rgba(255,255,255, .95);
+  position: relative;
+  z-index: 9000;
+  color: black;
+}
+
+.overlay {
+    background:  rgba(40,40,40, .75);
+}
+
+.close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-family: Arial, Helvetica, sans-serif;  
+  font-weight: bold;
+  cursor: pointer;
+  color: #434343;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.block-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh;
+}
