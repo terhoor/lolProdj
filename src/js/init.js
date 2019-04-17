@@ -55,8 +55,8 @@ export function startMap(objOrg) {
         $('.point')
           .html(paths[arr[this.id]].name)
           .css({
-            left: point.x + (point.width / 2) - 80,
-            top: point.y + (point.height / 2) - 50
+            left: point.x,
+            top: point.y - 30
           })
           .fadeIn();
         this.animate({
