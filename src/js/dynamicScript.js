@@ -1,6 +1,8 @@
 import $ from "jquery";
 var dataInfoOrg;
 
+$('#result').load('ajax/test.html #container');
+
 $.fn.addOrDelete = function(nameParam) {
   var property = '';
   for (var param in nameParam) {
