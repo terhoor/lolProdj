@@ -49,7 +49,6 @@ export function startMap(objOrg) {
     obj
       .hover(function () {
         var point = this.getBBox(0);
-        $('#map').next('.point').remove();
         $('#map').after($('<div />').addClass('point'));
         $('.point')
           .html(paths[arr[this.id]].name)
@@ -77,8 +76,14 @@ export function startMap(objOrg) {
         $('.area-name').text(nameArea);
         generateInfo(nameArea, objOrg);
       });
-
   }
+
+  $('#map').mouseout(function() {
+    var elem = $(this).next('.point');
+    if (elem.length) {
+      elem.remove();
+    }
+  });
 
   $('.overlay').on('click', function () {
     var overlay = $('.overlay');
