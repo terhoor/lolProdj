@@ -30,7 +30,7 @@ function generateInfo(nameOrg, data) {
 
 
 export function startMap(objOrg) {
-
+  console.log(objOrg)
   var overlay = $('.overlay');
   var body = $('body');
   var r = Raphael('map'),

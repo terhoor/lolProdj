@@ -6,21 +6,21 @@ import { startMap } from './init.js';
 
 
 $(function () {
-
+  var mapFlag = false;
   function resizeForMap() {
     const widthD = $(window).width();;
     if (widthD >= 768) {
-      $('.container-map').css('display', 'block');
+      $('.container-map-md').css('display', 'block');
+      if (!mapFlag) {
+        mapFlag = true;
+        startMap(objOrg);
+      }
+
     } else {
-      $('.container-map').css('display', 'none');
+      mapFlag = false;
+      $('.container-map-md').css('display', 'none').find('#map').empty();
     }
   }
-
-
-  $(window).resize(function () {
-    resizeForMap();
-  });
-
 
   (function () {
     areaName.sort();
@@ -43,7 +43,9 @@ $(function () {
     if ($('#map').length === 0) {
       funcDynamic();
     } else {
-      startMap(objOrg);
+      $(window).resize(function () {
+        resizeForMap();
+      });
       resizeForMap();
     }
   }
