@@ -2,7 +2,7 @@ import $ from "jquery";
 import Raphael from 'raphael';
 import { paths } from './paths.js';
 
-function generateInfo(nameOrg, data) {
+export function generateInfo(nameOrg, data) {
   var $overlay = $('.overlay');
   var $content = $('.content');
   $overlay.find('.content').empty();
@@ -26,8 +26,6 @@ function generateInfo(nameOrg, data) {
     $('<div class="block-empty">Ничего не найдено</div>').appendTo($content);
   }
 }
-
-
 
 export function startMap(objOrg) {
   var overlay = $('.overlay');
@@ -84,33 +82,4 @@ export function startMap(objOrg) {
       elem.remove();
     }
   });
-
-  $('.overlay').on('click', function () {
-    var overlay = $('.overlay');
-    var body = $('body');
-    var target = event.target;
-    const overlayS = $(target).is('.overlay') || $(target).is('.close');
-    const closeS = $(target).is('.close');
-    if (overlayS || closeS) {
-      // overlay.attr('aria-hidden', true);
-      overlay.fadeOut('fast', function() {
-        body.removeClass('noscroll');
-      });
-    }
-
-    return false;
-  });
-
-  $('.js-popup').on('click', function () {
-    var nameArea = $(this).text();
-    document.location.hash = nameArea;
-    body.addClass('noscroll');
-    overlay.fadeIn();
-    // overlay.attr('aria-hidden', !true);
-    overlay.scrollTop = 0;
-    $('.area-name').text(nameArea);
-    generateInfo(nameArea, objOrg);
-  });
-
 };
-

@@ -1,8 +1,6 @@
 import $ from "jquery";
 
 function startDynamic(dataInfoOrg) {
-  console.log(dataInfoOrg);
-  console.log(typeof dataInfoOrg);
   $.fn.addOrDelete = function (nameParam) {
     var property = '';
     for (var param in nameParam) {
@@ -29,7 +27,6 @@ function startDynamic(dataInfoOrg) {
       window.location = window.location.origin + '/404';
     } else {
       generateMenu(dataInfoOrg);
-      hideMenu();
       $(window).resize(function () {
         hideMenu();
       });
@@ -71,6 +68,7 @@ function startDynamic(dataInfoOrg) {
       }
     }
     funcDynamic();
+    hideMenu();
   
   }
   

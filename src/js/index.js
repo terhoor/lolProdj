@@ -2,7 +2,7 @@ import "bootstrap";
 import $ from "jquery";
 import { funcDynamicForPage } from './dynamicScript.js';
 import { areaName } from './paths.js';
-import { startMap } from './init.js';
+import { startMap, generateInfo } from './init.js';
 
 
 $(function () {
@@ -39,6 +39,7 @@ $(function () {
   });
 
   function startGeneratePoints() {
+    funcForMap();
 
     if ($('#map').length === 0) {
       funcDynamicForPage();
@@ -48,5 +49,36 @@ $(function () {
       });
       resizeForMap();
     }
+  }
+
+  function funcForMap() {
+    $('.js-popup').on('click', function () {
+      var overlay = $('.overlay');
+      var body = $('body');
+      var nameArea = $(this).text();
+      document.location.hash = nameArea;
+      body.addClass('noscroll');
+      overlay.fadeIn();
+      // overlay.attr('aria-hidden', !true);
+      overlay.scrollTop = 0;
+      $('.area-name').text(nameArea);
+      generateInfo(nameArea, objOrg);
+    });
+  
+    $('.overlay').on('click', function () {
+      var overlay = $('.overlay');
+      var body = $('body');
+      var target = event.target;
+      const overlayS = $(target).is('.overlay') || $(target).is('.close');
+      const closeS = $(target).is('.close');
+      if (overlayS || closeS) {
+        // overlay.attr('aria-hidden', true);
+        overlay.fadeOut('fast', function() {
+          body.removeClass('noscroll');
+        });
+      }
+  
+      return false;
+    });
   }
 });
