@@ -1,6 +1,6 @@
 import "bootstrap";
 import $ from "jquery";
-import { funcDynamic } from './dynamicScript.js';
+import { funcDynamicForPage } from './dynamicScript.js';
 import { areaName } from './paths.js';
 import { startMap } from './init.js';
 
@@ -41,7 +41,7 @@ $(function () {
   function startGeneratePoints() {
 
     if ($('#map').length === 0) {
-      funcDynamic();
+      funcDynamicForPage();
     } else {
       $(window).resize(function () {
         resizeForMap();
@@ -49,11 +49,4 @@ $(function () {
       resizeForMap();
     }
   }
-
-  $(document).on('click', '.nav-link', funcDynamic);
-
-  $('.js-btn-glass, .block-ornament').on('click', function () {
-    window.location = window.location.origin;
-  });
-
 });

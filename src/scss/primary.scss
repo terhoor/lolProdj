@@ -174,9 +174,11 @@ a.btn-glass:active {
   top: 1px;
 }
 
-/* 
-.dynamic-place main {
-  display: flex;
-  flex-direction: column;
-  align-items: space-around;
-} */
+@media (max-width: 475px) {
+  
+  .header {
+    .block-nameOrganization {
+      font-size: 1.45rem; 
+    }
+  }
+}
