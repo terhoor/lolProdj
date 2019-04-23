@@ -6,7 +6,11 @@ function startDynamic(dataInfoOrg) {
     for (var param in nameParam) {
       property = nameParam[param];
       if (property) {
-        this.find(`.${param}`).text(property);
+        if (typeof property !== 'string') {
+          continue;
+        }
+        var checkLink = wrapperForTextLink(property);
+        this.find(`.${param}`).html(checkLink);
       }
       else {
         this.find(`.block-${param}`).remove();
@@ -34,10 +38,10 @@ function startDynamic(dataInfoOrg) {
     }
   }
   
-  function wrapperForTextLink(Text) {
-    var re = /([^\"=]{2}|^)((https?|ftp):\/\/\S+[^\s.,<)\];'\"!?])/; 
-    var subst = '$1<a href="$2" class="link-in-text" target="_blank">$2</a>'; 
-    var withlink = Text.replace(re, subst);
+  function wrapperForTextLink(str) {
+    var re = /((http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?)/g;
+    var subst = '<a href="$1" target="_blank">$1</a>';
+    var withlink = str.replace(re, subst);
     return withlink;
   }
   
@@ -112,7 +116,6 @@ function startDynamic(dataInfoOrg) {
         $htmlPage = $($('#main').html());
         dataInfoOrg.organization.forEach(function (block) {
           $htmlPage.addOrDelete(block);
-          $htmlPage.html(wrapperForTextLink($htmlPage.html()));
         });
   
   
@@ -185,7 +188,6 @@ function startDynamic(dataInfoOrg) {
         dataInfoOrg.museums.forEach(function (museum) {
           var $newMuseum = $($museumStruc).clone();
           $newMuseum.addOrDelete(museum);
-          $newMuseum.html(wrapperForTextLink($newMuseum.html()));
           $museumsBlock.append($newMuseum);
         });
   
@@ -200,8 +202,7 @@ function startDynamic(dataInfoOrg) {
         dataInfoOrg.cabinets.forEach(function (cabinet) {
           var $newCabinet = $($cabinetStruc).clone();
   
-          $newCabinet.addOrDelete(cabinet);
-          $newCabinet.html(wrapperForTextLink($newCabinet.html()));          
+          $newCabinet.addOrDelete(cabinet);       
           $cabinetsBlock.append($newCabinet);
         });
   
@@ -218,8 +219,7 @@ function startDynamic(dataInfoOrg) {
           var $newInfo = $($otherStruc).clone();
   
           $newInfo
-            .find('.description').text(block.description);
-          $newInfo.html(wrapperForTextLink($newInfo.html()));          
+            .find('.description').html(wrapperForTextLink(block.description));      
           $otherBlock.append($newInfo);
           $otherBlock.append("</br>");
         });
@@ -249,8 +249,7 @@ function startDynamic(dataInfoOrg) {
         dataInfoOrg.societies.forEach(function (society) {
           var $newSociety = $(societyStruc).clone();
   
-          $newSociety.addOrDelete(society);
-          $newSociety.html(wrapperForTextLink($newSociety.html()));          
+          $newSociety.addOrDelete(society);      
           $societiesBlock.append($newSociety);
           $societiesBlock.append("</br>");
         });
@@ -278,8 +277,7 @@ function startDynamic(dataInfoOrg) {
         dataInfoOrg.events.forEach(function (event) {
           var $newEvent = $(eventStruc).clone();
   
-          $newEvent.addOrDelete(event);
-          $newEvent.html(wrapperForTextLink($newEvent.html()));          
+          $newEvent.addOrDelete(event);      
           $eventsBlock.append($newEvent);
           $eventsBlock.append("</br>");
         });
@@ -308,8 +306,7 @@ function startDynamic(dataInfoOrg) {
         dataInfoOrg.openClassrooms.forEach(function (openClassroom) {
           var $newopenClassroom = $(openClassroomStruc).clone();
   
-          $newopenClassroom.addOrDelete(openClassroom);
-          $newopenClassroom.html(wrapperForTextLink($newopenClassroom.html()));          
+          $newopenClassroom.addOrDelete(openClassroom);       
           $openClassroomsBlock.append($newopenClassroom);
           $openClassroomsBlock.append("</br>");
         });
@@ -320,8 +317,6 @@ function startDynamic(dataInfoOrg) {
   
     $dynamicDiv.empty();
     $dynamicDiv.append($htmlPage);
-  
-  
   
   }
 };
