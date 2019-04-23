@@ -34,6 +34,12 @@ function startDynamic(dataInfoOrg) {
     }
   }
   
+  function wrapperForTextLink(Text) {
+    var re = /([^\"=]{2}|^)((https?|ftp):\/\/\S+[^\s.,<)\];'\"!?])/; 
+    var subst = '$1<a href="$2" class="link-in-text" target="_blank">$2</a>'; 
+    var withlink = Text.replace(re, subst);
+    return withlink;
+  }
   
   function generateMenu(dataInfoOrg) {
     $.ajax({
@@ -106,6 +112,7 @@ function startDynamic(dataInfoOrg) {
         $htmlPage = $($('#main').html());
         dataInfoOrg.organization.forEach(function (block) {
           $htmlPage.addOrDelete(block);
+          $htmlPage.html(wrapperForTextLink($htmlPage.html()));
         });
   
   
@@ -162,6 +169,7 @@ function startDynamic(dataInfoOrg) {
           $newInfo
             .find('.description').text(block.description);
   
+          $newInfo.html(wrapperForTextLink($newInfo.html()));
           $additionalInfoBlock.append($newInfo);
           $additionalInfoBlock.append("</br>");
         });
@@ -176,8 +184,8 @@ function startDynamic(dataInfoOrg) {
   
         dataInfoOrg.museums.forEach(function (museum) {
           var $newMuseum = $($museumStruc).clone();
-  
           $newMuseum.addOrDelete(museum);
+          $newMuseum.html(wrapperForTextLink($newMuseum.html()));
           $museumsBlock.append($newMuseum);
         });
   
@@ -193,6 +201,7 @@ function startDynamic(dataInfoOrg) {
           var $newCabinet = $($cabinetStruc).clone();
   
           $newCabinet.addOrDelete(cabinet);
+          $newCabinet.html(wrapperForTextLink($newCabinet.html()));          
           $cabinetsBlock.append($newCabinet);
         });
   
@@ -210,6 +219,7 @@ function startDynamic(dataInfoOrg) {
   
           $newInfo
             .find('.description').text(block.description);
+          $newInfo.html(wrapperForTextLink($newInfo.html()));          
           $otherBlock.append($newInfo);
           $otherBlock.append("</br>");
         });
@@ -240,6 +250,7 @@ function startDynamic(dataInfoOrg) {
           var $newSociety = $(societyStruc).clone();
   
           $newSociety.addOrDelete(society);
+          $newSociety.html(wrapperForTextLink($newSociety.html()));          
           $societiesBlock.append($newSociety);
           $societiesBlock.append("</br>");
         });
@@ -253,7 +264,6 @@ function startDynamic(dataInfoOrg) {
   
         dataInfoOrg.collectives.forEach(function (collective) {
           var $newCollective = $(collectiveStruc).clone();
-  
           $newCollective.addOrDelete(collective);
           $collectivesBlock.append($newCollective);
           $collectivesBlock.append("</br>");
@@ -269,6 +279,7 @@ function startDynamic(dataInfoOrg) {
           var $newEvent = $(eventStruc).clone();
   
           $newEvent.addOrDelete(event);
+          $newEvent.html(wrapperForTextLink($newEvent.html()));          
           $eventsBlock.append($newEvent);
           $eventsBlock.append("</br>");
         });
@@ -298,6 +309,7 @@ function startDynamic(dataInfoOrg) {
           var $newopenClassroom = $(openClassroomStruc).clone();
   
           $newopenClassroom.addOrDelete(openClassroom);
+          $newopenClassroom.html(wrapperForTextLink($newopenClassroom.html()));          
           $openClassroomsBlock.append($newopenClassroom);
           $openClassroomsBlock.append("</br>");
         });

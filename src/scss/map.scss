@@ -109,8 +109,9 @@ z-index: 9999;
   
   .footer-map {
     background:url(../img/bg-footer.jpg) no-repeat;
-    height: 200px;
+    // height: 200px;
     padding-top: 64px;
+    padding-bottom: 20px;
     background-size: cover;
     width: 100%;
     text-align: center;
@@ -124,7 +125,7 @@ z-index: 9999;
   }
   
   .container-main {
-    height: 100wh;
+    min-height: 100vh;
     .title-map {
       color: rgb(255, 255, 255);
       text-align: center;
@@ -151,6 +152,18 @@ z-index: 9999;
         font-size: 1.45rem;
       }
     }
+
+    .footer-map {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 778px) {
+    .footer-map {
+      padding-top: 40px;
+    }
+
+    
   }
 
   @media (max-width: 575px) {
@@ -159,4 +172,6 @@ z-index: 9999;
         font-size: 1.25rem;
       }
     }
+
+    
   }
