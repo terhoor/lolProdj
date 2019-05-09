@@ -31,7 +31,7 @@ $(function () {
 
   var objOrg;
   $.ajax({
-    url: "http://map.e908476u.beget.tech/api/organizations",
+    url: "https://mapskool.ru/api/organizations",
     success: function (result) {
       objOrg = JSON.parse(result);;
       startGeneratePoints();

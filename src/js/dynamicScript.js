@@ -47,7 +47,7 @@ function startDynamic(dataInfoOrg) {
   
   function generateMenu(dataInfoOrg) {
     $.ajax({
-      url: `http://map.e908476u.beget.tech/api/json`,
+      url: `https://mapskool.ru/api/json`,
       success: function (result) {
         var typeName = JSON.parse(result);
         processMenu(dataInfoOrg, typeName);
@@ -328,7 +328,7 @@ export function funcDynamicForPage() {
 
 
   $.ajax({
-    url: `http://map.e908476u.beget.tech/api/organizations/${idOrg}`,
+    url: `https://mapskool.ru/api/organizations/${idOrg}`,
     success: function (result) {
       var res = JSON.parse(result);
       startDynamic(res);
