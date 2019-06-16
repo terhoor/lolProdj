@@ -1,5 +1,9 @@
 import $ from "jquery";
 
+function goToNotFound() {
+  window.location = window.location.origin + '/404';
+}
+
 function startDynamic(dataInfoOrg) {
   $.fn.addOrDelete = function (nameParam) {
     var property = '';
@@ -28,7 +32,7 @@ function startDynamic(dataInfoOrg) {
   
   function startMenu(dataInfoOrg) {
     if (dataInfoOrg === undefined) {
-      window.location = window.location.origin + '/404';
+      goToNotFound();
     } else {
       generateMenu(dataInfoOrg);
       $(window).resize(function () {
@@ -328,8 +332,11 @@ function startDynamic(dataInfoOrg) {
 export function funcDynamicForPage() {
   var urlParams = new URLSearchParams(window.location.search);
   var idOrg = urlParams.get('id');
-  if (!idOrg) return;
 
+  if (!idOrg) {
+    goToNotFound();
+    return;
+  }
 
   $.ajax({
     url: `https://mapskool.ru/api/organizations/${idOrg}`,
