@@ -92,14 +92,18 @@ function startDynamic(dataInfoOrg) {
     }
   
   }
-  
+  // window.history.replaceState("", "", window.location.origin);
+
   function funcDynamic() {
+    event.preventDefault();
+
     var hash = $(this).data('place') || window.location.hash.slice(1) || 'main';
     var $dynamicDiv = $('.dynamic-place');
     var $htmlPage;
     $('.js-nav .active').removeClass('active');
     if (this === undefined) {
       $('.js-nav .nav-link').filter(function () {
+        
         return $(this).attr("data-place") === hash
       }
       ).addClass('active');
